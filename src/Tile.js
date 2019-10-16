@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function Tile(props) {
+    //Hooks
     const [tile, setTile] = useState(props.index)
     const [beenClicked, setClick] = useState(false)
+    
+    //Logic
     const onClick = _ => {
         if(!beenClicked){
             props.handleClick(props.index)
@@ -12,9 +15,9 @@ function Tile(props) {
     }
     
     return (
-        <div className="App">
+        <>
             <h2 onClick={onClick}>{tile}</h2>
-        </div>
+        </>
     );
 }
 

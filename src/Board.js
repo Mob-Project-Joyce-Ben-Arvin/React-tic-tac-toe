@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Tile from './Tile.js'
 
 function Board() {
@@ -6,6 +6,7 @@ function Board() {
     const [player, setPlayer] = useState(true)
     const [p1Moves, setP1] = useState([])
     const [p2Moves, setP2] = useState([])
+    const [boardWinnerFound, setWinner] = useState(false)
     
     //Constants
     const board = Array(9).fill(null)
@@ -13,28 +14,30 @@ function Board() {
     
     //Game Logic
     const hasWon = (playerTurn, index) => !!winConditions.filter(wincondition => wincondition.every(winNum => [...playerTurn, index].includes(winNum))).length
-    const switchPlayer = index => {
+    
+    const gameLogic = index => {
+        let winnerFound = hasWon(player ? p1Moves : p2Moves, index)
+        console.log(winnerFound)
         player ? setP1([...p1Moves,index]) : setP2([...p2Moves,index])
         
-        const won1 = hasWon(p1Moves, index)
-        console.log("p1 won?",won1)
-        const won2 = hasWon(p2Moves, index)
-        console.log("p2 won?",won2)
-        
-        setPlayer(!player)
+        if(winnerFound){
+            alert(`${player ? "Player One Won" : "Player Two Won"}`)
+            setWinner(winnerFound)
+            //Stop game
+        }else{
+            setPlayer(!player)
+        }
     }
     
     //Board Generation
     const generateTile = (elm, ind) => (
-        <Tile handleClick={switchPlayer} player={player} index={ind} key={ind}/>
+        <Tile handleClick={gameLogic} player={player} index={ind} key={ind}/>
     )
     
-    //Delete me later
-    useEffect(()=> console.log("Player1 ::",p1Moves,"  Player2 ::",p2Moves))
     
     return (
         <div className="App">
-            <h2>{player ? "Player One" : "Player Two"}</h2>
+            <h2>{player ? "Player One" : "Player Two"}{boardWinnerFound ? "  WON!!!!!" : ''}</h2>
             {board.map(generateTile)}
         </div>
     );
