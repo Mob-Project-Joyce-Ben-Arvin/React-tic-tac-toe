@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 function Tile(props) {
-    const [tile, setTile] = useState(" Empty ")
+    const [tile, setTile] = useState(props.index)
     const [beenClicked, setClick] = useState(false)
     const onClick = _ => {
         if(!beenClicked){
