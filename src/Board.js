@@ -4,6 +4,8 @@ import Tile from './Tile.js'
 function Board() {
     //Hooks
     const [player, setPlayer] = useState(true)
+    const [scores, setScores] = useState([0, 0])
+
     const [p1Moves, setP1] = useState([])
     const [p2Moves, setP2] = useState([])
     const [boardWinnerFound, setWinner] = useState(false)
@@ -20,7 +22,6 @@ function Board() {
         player ? setP1([...p1Moves,index]) : setP2([...p2Moves,index])
 
         if(winnerFound){
-            alert(`${player ? "Player One Won" : "Player Two Won"}`)
             setWinner(winnerFound)
             //Stop game
         }else{
@@ -36,10 +37,16 @@ function Board() {
     
     return (
         <>
-            <h2>{player ? "Player One" : "Player Two"}{boardWinnerFound ? "  WON!!!!!" : ''} </h2>
+            <h2>{player ? "Player One [ X ]" : "Player Two [ O ]"}{boardWinnerFound ? "  WON!!!!!" : ''} </h2>
             <div className="game_container">
+                <div className="score_container">
+                    <h1>Player 1</h1>
+                </div>
                 <div className="grid">
                     {board.map(generateTile)}
+                </div>
+                <div className="score_container">
+                    <h1>Player 2</h1>
                 </div>
             </div>
         </>
