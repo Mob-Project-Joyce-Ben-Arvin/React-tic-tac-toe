@@ -28,6 +28,7 @@ function Board() {
             setWinner(winnerFound)
             player ? setScores([scores[0] +1 , scores[1]]) : setScores([scores[0], scores[1] + 1])
             //Stop game
+            resetGame()
         }else{
             setPlayer(!player)
         }
@@ -49,7 +50,7 @@ function Board() {
         setPlayer(!player)
         setP1([])
         setP2([])
-        setWinner(!false)
+        setWinner(false)
         setReset(!reset)
     }
     
@@ -63,7 +64,7 @@ function Board() {
                 </div>
                 
                 <div className="grid">
-                    {reset ? board.map(generateTile) : <h1>Start Game </h1>}
+                    {reset ? board.map(generateTile) : <button className = "startButton" onClick={resetGame}> Start Game </button>}
                 </div>
                 
                 <div className="score_container">
@@ -71,7 +72,7 @@ function Board() {
                     <h3>{scores[1]}</h3>
                 </div>
             </div>
-            <button onClick={resetGame}> Start Game </button>
+            
         </>
     );
 }

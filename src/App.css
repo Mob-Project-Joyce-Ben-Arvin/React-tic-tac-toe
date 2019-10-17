@@ -97,3 +97,8 @@
 .no-hover{
   transform: none;
 }
+
+.startButton {
+  width: 600px;
+  height: 600px;
+}
