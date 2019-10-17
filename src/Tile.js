@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 function Tile(props) {
     //Hooks
-    const [tile, setTile] = useState(props.index)
+    const [tile, setTile] = useState(" ")
     const [beenClicked, setClick] = useState(false)
     
     //Logic
@@ -15,9 +15,18 @@ function Tile(props) {
     }
     
     return (
-        <div>
-            <h2 onClick={onClick}>{tile}</h2>
-        </div>
+        <div className = "box">
+            <div className = {!beenClicked ? "card" : "card no-hover"}>
+              <div onClick={onClick} className = "content">
+                <div className = "front">
+                    {tile}
+                </div>
+                <div className = "back">
+                    <p>{props.player ? 'X' : 'O'}</p>
+                </div>
+              </div>
+            </div>
+        </div> 
     );
 }
 
