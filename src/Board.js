@@ -5,10 +5,12 @@ function Board() {
     //Hooks
     const [player, setPlayer] = useState(true)
     const [scores, setScores] = useState([0, 0])
+    const [reset, setReset] = useState(false)
 
     const [p1Moves, setP1] = useState([])
     const [p2Moves, setP2] = useState([])
     const [boardWinnerFound, setWinner] = useState(false)
+    
     
     //Constants
     const board = Array(9).fill(null)
@@ -24,10 +26,8 @@ function Board() {
 
         if(winnerFound){
             setWinner(winnerFound)
-            
             player ? setScores([scores[0] +1 , scores[1]]) : setScores([scores[0], scores[1] + 1])
             //Stop game
-            
         }else{
             setPlayer(!player)
         }
@@ -37,7 +37,21 @@ function Board() {
     const generateTile = (elm, ind) => (
         <Tile handleClick={gameLogic} player={player} index={ind} key={ind}/>
     )
+    //     const [player, setPlayer] = useState(true)
+    // const [scores, setScores] = useState([0, 0])
+    // const [reset, setReset] = useState(false)
+
+    // const [p1Moves, setP1] = useState([])
+    // const [p2Moves, setP2] = useState([])
+    // const [boardWinnerFound, setWinner] = useState(false)
     
+    const resetGame = () => {
+        setPlayer(!player)
+        setP1([])
+        setP2([])
+        setWinner(!false)
+        setReset(!reset)
+    }
     
     return (
         <>
@@ -47,14 +61,17 @@ function Board() {
                     <h1>Player 1</h1>
                         <h3>{scores[0]}</h3>
                 </div>
+                
                 <div className="grid">
-                    {board.map(generateTile)}
+                    {reset ? board.map(generateTile) : <h1>Start Game </h1>}
                 </div>
+                
                 <div className="score_container">
                     <h1>Player 2 </h1>
                     <h3>{scores[1]}</h3>
                 </div>
             </div>
+            <button onClick={resetGame}> Start Game </button>
         </>
     );
 }
