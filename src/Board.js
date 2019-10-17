@@ -16,10 +16,9 @@ function Board() {
     const hasWon = (playerTurn, index) => !!winConditions.filter(wincondition => wincondition.every(winNum => [...playerTurn, index].includes(winNum))).length
     
     const gameLogic = index => {
-        let winnerFound = hasWon(player ? p1Moves : p2Moves, index)
-        console.log(winnerFound)
+        const winnerFound = hasWon(player ? p1Moves : p2Moves, index)
         player ? setP1([...p1Moves,index]) : setP2([...p2Moves,index])
-        
+
         if(winnerFound){
             alert(`${player ? "Player One Won" : "Player Two Won"}`)
             setWinner(winnerFound)
@@ -36,10 +35,14 @@ function Board() {
     
     
     return (
-        <div className="App">
-            <h2>{player ? "Player One" : "Player Two"}{boardWinnerFound ? "  WON!!!!!" : ''}</h2>
-            {board.map(generateTile)}
-        </div>
+        <>
+            <h2>{player ? "Player One" : "Player Two"}{boardWinnerFound ? "  WON!!!!!" : ''} </h2>
+            <div className="game_container">
+                <div className="grid">
+                    {board.map(generateTile)}
+                </div>
+            </div>
+        </>
     );
 }
 

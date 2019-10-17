@@ -20,3 +20,14 @@
 .App-link {
   color: #09d3ac;
 }
+
+.grid {
+  display: grid;
+  grid-template-rows: 200px 200px 200px;
+  grid-template-columns: 200px 200px 200px;
+}
+
+.game_container {
+  display: flex;
+  justify-content:center;
+}

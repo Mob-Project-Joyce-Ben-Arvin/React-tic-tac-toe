@@ -15,9 +15,9 @@ function Tile(props) {
     }
     
     return (
-        <>
+        <div>
             <h2 onClick={onClick}>{tile}</h2>
-        </>
+        </div>
     );
 }
 
