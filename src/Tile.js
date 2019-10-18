@@ -22,7 +22,7 @@ function Tile(props) {
                     {tile}
                 </div>
                 <div className = "back">
-                    <p>{props.player ? 'X' : 'O'}</p>
+                    <p>{ !beenClicked ? (props.player ? 'X' : 'O') : tile }</p>
                 </div>
               </div>
             </div>

@@ -23,8 +23,17 @@
 
 .game_container {
   display: flex;
+  align-items: center;
   justify-content:center;
 }
+.score_container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 
 .grid {
   display: grid;
@@ -65,7 +74,7 @@
 
 .card:not(.no-hover):hover .content:not(.no-hover) {
   transform: rotateY( 180deg );
-  transition: transform 0.5s;
+  transition: transform .5s;
 }
 
 .front, .back {
@@ -80,11 +89,16 @@
   backface-visibility: hidden;
 }
 
-.back:not(.no-hover) {
+.back {
   transform: rotateY( 180deg );
-  transition: transform 0.5s;
+  transition: transform .5s;
 }
 
-.back .no-hover{
-  display: hidden;
+.no-hover{
+  transform: none;
+}
+
+.startButton {
+  width: 600px;
+  height: 600px;
 }
